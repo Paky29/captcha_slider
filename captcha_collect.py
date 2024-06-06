@@ -92,7 +92,7 @@ if __name__ == "__main__":
 
     img = driver.find_element(By.CLASS_NAME, 'cap-div')
     img_url = img.value_of_css_property("background-image").removeprefix("url(\"").removesuffix("\")")
-    #save_image("comp_img", img_url, "0")
+    save_image("comp_img", img_url, "1")
 
     script = """
                 var element = document.getElementById('cap_range');
@@ -100,9 +100,9 @@ if __name__ == "__main__":
                 return pseudoElement.getPropertyValue('background-image');
                 """
     sub_img_url = driver.execute_script(script).removeprefix("url(\"").removesuffix("\")")
-    #save_image("sub_img", sub_img_url, "0")
+    save_image("sub_img", sub_img_url, "1")
 
-    template_matching.move_input(driver, "comp_img/image0.png", "sub_img/image0.png")
+    template_matching.move_input(driver, "comp_img/image1.png", "sub_img/image1.png")
 
     solver = driver.find_element(By.NAME, "solve_captcha")
     driver.execute_script("arguments[0].scrollIntoView(true);", solver)
@@ -111,7 +111,7 @@ if __name__ == "__main__":
     solver = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.NAME, "solve_captcha"))
     )
-    #solver.submit()
+    solver.submit()
 
 
 
