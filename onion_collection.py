@@ -10,8 +10,6 @@ from time import sleep
 import base64
 from selenium.webdriver.common.by import By
 
-import template_matching
-
 def save_image(fold:str, url: str, number: int):
     image_data = url.split(",")[1]
 
@@ -23,7 +21,7 @@ def save_image(fold:str, url: str, number: int):
         os.makedirs(fold)
 
     # Salva l'immagine su file
-    with open(fold+"/image"+str(number)+".png", "wb") as f:
+    with open(fold+"/image"+str(number)+".jpg ", "wb") as f:
         f.write(image_bytes)
 
 
@@ -61,8 +59,7 @@ if __name__ == "__main__":
         img = driver.find_element(By.NAME, "position[]")
 
         img_url = img.get_attribute('src')
-        save_image("onion_image", img_url, i)
-
+        save_image("onion_img", img_url, i)
         driver.refresh()
         sleep(5)
 
